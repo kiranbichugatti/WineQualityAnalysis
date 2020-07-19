@@ -11,6 +11,7 @@ import json
 
 from flask import Flask
 from flask_restful import Api, Resource, request
+from flask import Flask, request, render_template
 import joblib
 
 
@@ -73,6 +74,10 @@ class PredictRegression(Resource):
 # Setup the Api resource routing here
 # Route the URL to the resource
 api.add_resource(PredictRegression, '/regression')
+
+@app.route('/')
+def form():
+    return render_template("form.html")
 
 
 
