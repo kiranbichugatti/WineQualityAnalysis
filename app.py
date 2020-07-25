@@ -12,6 +12,8 @@ import json
 from flask import Flask
 from flask_restful import Api, Resource, request
 from flask import Flask, request, render_template
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, TextAreaField
 import joblib
 
 
@@ -77,7 +79,12 @@ api.add_resource(PredictRegression, '/regression')
 
 @app.route('/')
 def form():
-    return render_template("form.html")
+    message = ''
+    if request.method == 'POST':
+         message = "Correct username and password"
+    else:
+         message = "Get"
+    return render_template("form.html", message = message)
 
 
 
