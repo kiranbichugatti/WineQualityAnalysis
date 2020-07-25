@@ -1,69 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<title>Wine Quality Analysis</title>
+</head>
+<style>
+h1 {text-align: center;}
+</style>
+<body>
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col text-align: center">
       <h1>Wine Data Form</h1>
       <hr>
     </div>
   </div>
 </div>
 
-<form action="/regression" method="POST">
-
-  <div class="form-group">
+<form action="{{ url_for('predictregression') }}" method="POST">
+<div class="wrapper container">
+<div class="row">
+  <div class="col-2 form-group">
     <label>Fixed Acidity</label>
     <input type="text" class="form-control" id="fixedacidity" name="fixedacidity" placeholder="">
   </div>
 
-  <div class="form-group">
+  <div class="col-2 form-group">
     <label>Volatile Acidity</label>
     <input type="text" class="form-control" id="volatileacidity" name="volatileacidity" placeholder="">
   </div>
 
-  <div class="form-group">
+  <div class="col-2 form-group">
     <label>Citric Acid</label>
     <input type="text" class="form-control" id="citricacid" name="citricacid" placeholder="">
   </div>
   
-  <div class="form-group">
+  <div class="col-2 form-group">
     <label>Residual Sugar</label>
     <input type="text" class="form-control" id="residualsugar" name="residualsugar" placeholder="">
   </div>
   
-  <div class="form-group">
-    <label>chlorides</label>
+  <div class="col-2 form-group">
+    <label>Chlorides</label>
     <input type="text" class="form-control" id="chlorides" name="chlorides" placeholder="">
   </div>
   
-  <div class="form-group">
+  <div class="col-2 form-group">
     <label>Free Sulfur Dioxide</label>
     <input type="text" class="form-control" id="freesulfurdioxide" name="freesulfurdioxide" placeholder="">
   </div>
   
-  <div class="form-group">
+  <div class="col-2 form-group">
     <label>Total Sulfur Dioxide</label>
     <input type="text" class="form-control" id="totalsulfurdioxide" name="totalsulfurdioxide" placeholder="">
   </div>
   
-  <div class="form-group">
+  <div class="col-2 form-group">
     <label>Density</label>
     <input type="text" class="form-control" id="density" name="density" placeholder="">
   </div>
   
-  <div class="form-group">
+  <div class="col-2 form-group">
     <label>pH</label>
     <input type="text" class="form-control" id="ph" name="ph" placeholder="">
   </div>
   
-  <div class="form-group">
+  <div class="col-2 form-group">
     <label>Sulphates</label>
     <input type="text" class="form-control" id="sulphates" name="sulphates" placeholder="">
   </div>
   
-  <div class="form-group">
-    <label>alcohol</label>
+  <div class="col-2 form-group">
+    <label>Alcohol</label>
     <input type="text" class="form-control" id="alcohol" name="alcohol" placeholder="">
   </div>
 
+   <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+
 </form>
 
-<button type="submit" class="btn btn-primary">Submit</button>
+<img src="/image/red_wine.jpg" align="right" alt="Red Wine" style="width:1170px;height:600px;">
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -11,15 +11,16 @@ import json
 
 from flask import Flask
 from flask_restful import Api, Resource, request
-from flask import Flask, request, render_template
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField
+from flask import flash
+from flask import Flask, request, render_template, redirect, url_for
+from flask import Markup
 import joblib
 
 
 port = int(os.getenv('PORT', '5000'))
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path = "/image", static_folder = "image")
+app.secret_key = os.urandom(24)
 api = Api(app)
 
 # argument parsing
@@ -67,11 +68,10 @@ class PredictRegression(Resource):
         output = pd.DataFrame(predictions, columns=['Prediction']).to_json(orient='table')
         output=json.loads(output)
         
-        return output
+        rating = convertWineRating(output["data"][0]['Prediction'])
 
-
-
-
+        return redirect(url_for('output', rating = rating))
+    
 
 # Setup the Api resource routing here
 # Route the URL to the resource
@@ -79,13 +79,19 @@ api.add_resource(PredictRegression, '/regression')
 
 @app.route('/')
 def form():
-    message = ''
-    if request.method == 'POST':
-         message = "Correct username and password"
-    else:
-         message = "Get"
-    return render_template("form.html", message = message)
+    return render_template("form.html")
 
+@app.route('/output/<rating>')
+def output(rating):
+    return render_template("output.html", rating = rating)
+
+def convertWineRating(x):
+    if(0 < x <= 4):
+        return "Bad"
+    elif(4 < x <= 6):
+        return "Average"
+    elif(6 < x <= 10):
+        return "Good"
 
 
 if __name__ == '__main__':
