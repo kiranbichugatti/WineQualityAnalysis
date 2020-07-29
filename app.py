@@ -87,11 +87,11 @@ def output(rating):
 
 def convertWineRating(x):
     if(0 < x <= 4):
-        return "Bad"
+        return "Bad ({})".format(x)
     elif(4 < x <= 6):
-        return "Average"
+        return "Average ({})".format(x)
     elif(6 < x <= 10):
-        return "Good"
+        return "Good ({})".format(x)
 
 
 if __name__ == '__main__':
