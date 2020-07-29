@@ -6,15 +6,12 @@ Created on
 """
 import os
 import pandas as pd
-
+import joblib
 import json
 
-from flask import Flask
-from flask_restful import Api, Resource, request
-from flask import flash
 from flask import Flask, request, render_template, redirect, url_for
-from flask import Markup
-import joblib
+from flask_restful import Api, Resource, request
+
 
 
 port = int(os.getenv('PORT', '5000'))
